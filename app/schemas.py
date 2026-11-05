@@ -1,20 +1,22 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
-'''
+"""
 VALIDATION
-'''
+"""
 
-#Pydantic
+
+# Pydantic
 class TodoBase(BaseModel):
-    title : str
-    description : str | None = None
-    completed : bool = False
+    title: str
+    description: str | None = None
+    completed: bool = False
+
 
 class TodoCreate(TodoBase):
     pass
 
-class TodoResponse(TodoBase):
-    id : int
 
-    class config:
-        form_attributes = True
+class TodoResponse(TodoBase):
+    id: int
+
+    model_config = ConfigDict(from_attributes=True)
